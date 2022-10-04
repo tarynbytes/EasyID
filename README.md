@@ -1,5 +1,7 @@
 # project
 
+
+### Program Flow
 ```mermaid
 flowchart TB
 subgraph project_name
@@ -23,3 +25,33 @@ subgraph project_name
 I -.- M -.-> A
 L --> Y
 end
+```
+
+
+### Class Diagram
+```mermaid
+classDiagram
+    Data <|-- PhoneNumber
+    Driver <|--|> PhoneNumber
+    
+    Data : +init()
+    Data : +process()
+    Data : +deInit()
+    
+  class Driver {
+    +parseInput()
+    +storeInput()
+    +moduleSelect()
+  }
+  
+  class PhoneNumber {
+    +String type
+    +String content
+    +int length
+    +init(userInput)
+    +process()
+    +countryCode()
+    +areaCode()
+    +deInit()
+  }
+```
