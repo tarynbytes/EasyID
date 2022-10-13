@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "cdVowDPt8/EeMgHQPS3oyp+zU1lNQKcKuYc8NsFN7m8fb0Sw44CO8XHtJftxcQ8UH/qpfLAnVB5HIDeEqZaGHw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\ConsoleApp1\\EasyID.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tchov\\.nuget\\packages\\system.commandline\\2.0.0-beta4.22272.1\\system.commandline.2.0.0-beta4.22272.1.nupkg.sha512"
+  ],
+  "logs": []
+}
