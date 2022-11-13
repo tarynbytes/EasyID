@@ -24,5 +24,8 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal # <-- this is the current bottom line
+    - name: Publish
+      run: dotnet publish SimpleFeedReader/SimpleFeedReader.csproj -c Release -o website #The step runs the dotnet publish command to publish the web app. 
+      # This publishes the web app to a folder on the hosted agent. Now you'll want to upload the site as a build artifact that can be deployed to Azure. To complete this activity, you'll use an existing action.
 
