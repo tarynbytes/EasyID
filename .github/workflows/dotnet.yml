@@ -1,25 +1,28 @@
-name: .NET
+name: .NET #There's a name that names the workflow.
 
-on:
-  push:
+on: #The on object specifies when this workflow should run. 
+# This workflow has two events that trigger it: push to main and pull_request to main. 
+# Each time someone commits to main or creates a pull request (PR) to main, this workflow will execute.
+  push:     
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+#There's a single job called build. This build should run on a hosted agent. 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #ubuntu_latest specifies the most recent Ubuntu hosted agent.
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3 #is an action that checks out the code in the repository onto the runner.
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v3 #is an action that sets up the .NET CLI. This step also specifies a name attribute for the logs and the dotnet-version parameter within the with object.
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
+    - name: Restore dependencies #Three run steps that execute dotnet restore, dotnet build, and dotnet test. name attributes are also specified for these run steps to make the logs look pretty.
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
