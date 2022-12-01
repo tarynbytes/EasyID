@@ -1,0 +1,8 @@
+Hello world!
+
+This is just a test file!
+The zip code for Augusta, GA. is 30907.
+And 1234-1234-1234-1234 is an invalid credit card number.
+But 5465-0546-2491-4275 is not!
+My phone number is 630-589-6332.
+Please send money to my wallet at 1BpCB9Qzm2LePrQKu6RzASzEKvjc6utsQQ. 

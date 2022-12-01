@@ -1,0 +1,386 @@
+﻿@page "/search"
+@using Microsoft.Extensions.Logging
+@using System.Text.RegularExpressions;
+@using System.ComponentModel;
+@using System.ComponentModel.DataAnnotations;
+@using EasyID.Data;
+@using System.Web
+@using System.Text.RegularExpressions;
+@inject ILogger<Search> Logger
+
+<PageTitle>Search</PageTitle>
+
+<h1>Search</h1>
+
+<EditForm Model="@d" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Identifier:
+            <InputText @bind-Value="d.Input" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Type:
+            <InputSelect @bind-Value="d.Type">
+                <option value="">Select Input Type ...</option>
+                <option value="file">file</option>
+                <option value="data string">data string</option>
+            </InputSelect>
+        </label>
+    </p>
+
+    <button type="submit">Submit</button>
+    <button type="button" class="btn btn-primary" @onclick="@ClearResults">Clear</button>
+
+
+
+    @try
+    {
+        @((MarkupString)d.Results)
+    }
+    catch
+    {
+        ;
+    }
+
+</EditForm>
+
+
+@code {
+    public Driver d = new();
+
+    private void ClearResults()
+    {
+        d.Reset();
+        d.Results = "";
+    }
+
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
+        if (d.Type == "file")
+        {
+            ParseFile(d.Input);
+        }
+        else
+        {
+            ParseData();
+        }
+    }
+
+    public void ParseData()
+    {
+        d.Length = d.Input.Length;
+        DataTemplate.SetDriver(d);
+
+        ModuleSelect(d);
+    }
+
+    public void ParseFile(String f)
+    {
+        //string originalDir = Directory.GetCurrentDirectory();
+
+        d.Results += "<br>";
+        FileInfo file = new FileInfo(f);
+        string[]? dir = file.FullName.Split('\\').Reverse().Skip(1).Reverse().ToArray();
+        string? dirPath = string.Join("\\", dir);
+        Directory.SetCurrentDirectory(dirPath);
+
+        char[] delims = { '.', '!', '?', ',', '(', ')', '\t', '\n', '\r', ' ' }; //BUG: Need to fix such that spaces, periods, parentheses, etc. can be included in input somehow... 
+        var wordList = new List<string>();
+        try
+        {
+
+            string[] words = File.ReadAllText(file.Name)
+                .Split(delims, StringSplitOptions.RemoveEmptyEntries);
+            
+            foreach (string word in words)
+            {
+                d.Input = word;
+                d.Length = d.Input.Length;
+                DataTemplate.SetDriver(d);
+
+                ModuleSelect(d);
+            }
+        }
+        catch
+        {
+            d.Results += "File not found or inaccessible permissions.";
+        }
+    }
+
+
+    public static void ModuleSelect(Driver d)
+    {
+        d.Results += "<br>";
+        bool match = false;
+
+        UnitedStatesPhoneNumber USphoneNumber = new UnitedStatesPhoneNumber(d);
+        USStateAbbreviation stateAbbreviation = new USStateAbbreviation(d);
+        SocialSecurityNumber ssn = new SocialSecurityNumber(d);
+        BitcoinWalletAddress btc = new BitcoinWalletAddress(d);
+        UnitedStatesZipCode zip = new UnitedStatesZipCode(d);
+        CreditCardNumber ccn = new CreditCardNumber(d);
+        EmailAddress email = new EmailAddress(d);
+        YouTubeLink youtube = new YouTubeLink(d);
+        WindowsGUID guid = new WindowsGUID(d);
+        WindowsUUID uuid = new WindowsUUID(d);
+        MACAddress mac = new MACAddress(d);
+        IPv4 ipv4 = new IPv4(d);
+        IPv6 ipv6 = new IPv6(d);
+        URL url = new URL(d);
+
+        bool b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(ssn))
+        {
+            object value = descriptor.GetValue(ssn);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += ssn.ToString();
+            d.Results += "!<br>";
+            d.Results += ssn.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(btc))
+        {
+            object value = descriptor.GetValue(btc);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += btc.ToString();
+            d.Results += "!<br>";
+            d.Results += btc.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(zip))
+        {
+            object value = descriptor.GetValue(zip);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += zip.ToString();
+            d.Results += "!<br>";
+            d.Results += zip.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(ccn))
+        {
+            object value = descriptor.GetValue(ccn);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += ccn.ToString();
+            d.Results += "!<br>";
+            d.Results += ccn.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(mac))
+        {
+            object value = descriptor.GetValue(mac);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += mac.ToString();
+            d.Results += "!<br>";
+            d.Results += mac.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(ipv4))
+        {
+            object value = descriptor.GetValue(ipv4);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += ipv4.ToString();
+            d.Results += "!<br>";
+            d.Results += ipv4.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(ipv6))
+        {
+            object value = descriptor.GetValue(ipv6);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += ipv6.ToString();
+            d.Results += "!<br>";
+            d.Results += ipv6.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(USphoneNumber))
+        {
+            object value = descriptor.GetValue(USphoneNumber);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += USphoneNumber.ToString();
+            d.Results += "!<br>";
+            d.Results += USphoneNumber.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(url))
+        {
+            object value = descriptor.GetValue(url);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += url.ToString();
+            d.Results += "!<br>";
+            d.Results += url.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(email))
+        {
+            object value = descriptor.GetValue(email);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += email.ToString();
+            d.Results += "!<br>";
+            d.Results += email.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(youtube))
+        {
+            object value = descriptor.GetValue(youtube);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += youtube.ToString();
+            d.Results += "!<br>";
+            d.Results += youtube.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(guid))
+        {
+            object value = descriptor.GetValue(guid);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += guid.ToString();
+            d.Results += "!<br>";
+            d.Results += guid.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(uuid))
+        {
+            object value = descriptor.GetValue(uuid);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += uuid.ToString();
+            d.Results += "!<br>";
+            d.Results += uuid.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(stateAbbreviation))
+        {
+            object value = descriptor.GetValue(stateAbbreviation);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += stateAbbreviation.ToString();
+            d.Results += "!<br>";
+            d.Results += stateAbbreviation.Process();
+            d.Results += "</b><br>";
+        }
+
+
+        b = true;
+        if (match == false)
+        {
+            d.Results += String.Format("<b>{0}: </b>", d.Input);
+            d.Results += "No match!";
+
+        }
+
+    }
+
+// Property Test Check
+
+// System.Console.WriteLine("DRIVER:");
+// foreach (PropertyDescriptor des in TypeDescriptor.GetProperties(d))
+// {
+    // object v = des.GetValue(d);
+    // System.Console.WriteLine(String.Format("{0}: {1}", des, v));
+// }
+// System.Console.WriteLine("STATE:");
+// foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(stateAbbreviation))
+// {
+    // object value = descriptor.GetValue(stateAbbreviation);
+    // System.Console.WriteLine(String.Format("{0}: {1}", descriptor, value));
+}

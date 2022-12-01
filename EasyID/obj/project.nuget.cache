@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Hz5hK/1WzDYVmHhXSqsZZd1T4jL5x8rZFyFnurf0tPaT8GEVyxdJ6W/TLkdpr3lXQao/aWVe+vYd3e5n0olUdw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\EasyID.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tchov\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",
+    "C:\\Users\\tchov\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
