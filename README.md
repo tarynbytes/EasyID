@@ -1,30 +1,22 @@
 # project
 
-
 ### Program Flow
 ```mermaid
 flowchart LR
 subgraph EasyID
   subgraph Search.razor
-  direction TB
-    subgraph  
-      direction TB
-        A{User input} =====> B[Extract input\nproperties] --> Z["Stores in standard\ninput (Driver) object"] --> Y[Load applicable module\nvia decision-making logic]
-    end
-   M[Process another?]
-   Q[Result Output Resets]
+    A{User input} =====> B[Extract input\nproperties] --> Z["Stores in standard\ninput (Driver) object"] --> Y[Load applicable module\nvia decision-making logic]
+    M[Process another?]
+    Q[Clear or append\nresults]
   end
   subgraph Module.cs
-    direction TB
-    subgraph  
-      direction TB
-        D[Module inits] --> E[Driver object properties \n==\n Module object properties] --> G[Module Processes] --> H[Ouput results\nand info] --> I[Module de_inits]
-    end
-    D --> F[Driver object properties \n!=\n Module object properties]
-    F --> J[1. Ouput top\nthree guesses?] & K[2. Percent\nlikelihood?] & L[3. Return to\ntry again?]
+    D[Module inits] --> E["Module properties initialize\nbased on driver object properties"] --> G[Module Processes] --> H[Ouput results\nand info] --> I[Module de_inits]
+    R[Match]
+    S[No Match]
+    D --> F["Module properties fail to initialize\n(A property returns null)"]
   end
-I -.- M -.-> Q --> A
-L --> Y
+I -.- R -.- M -.-> Q --> A
+F -.- S -.- M 
 Y --> D
 end
 ```
