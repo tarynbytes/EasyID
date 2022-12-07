@@ -8,17 +8,17 @@ namespace EasyID.Data
 {
     public class MACAddress : DataTemplate
     {
+        // TODO: Check for ffff.ffff.ffff format
         private Driver _driver;
         private List<int> _lengthList = new List<int> { 12, 17 };
-        //TODO: Check for symbols only at inidices 2, 5, 8, 11, 14
-        //private List<string> _indexList = new List<string> { "NN", "NNNSNNSNNNN" };
         private List<string> _contentList = new List<string> { "alphanumeric", "alphanumersymbolic" };
         private List<string> _symList = new List<string> { ":::::", "-----", ""};
         private Dictionary<string, string> _hex = new Dictionary<string, string> { };
         private string _mac = "";
         private string _company = "";
+        // API used: https://api.macvendors.com/<MAC>
 
-        //TODO: Check for ffff.ffff.ffff format
+
 
         public MACAddress(Driver d) : base(d)
         {
@@ -68,6 +68,7 @@ namespace EasyID.Data
             }
         }
 
+        // API call to return the vendor. If the call can't find the mac, then return null
         public string Mac
         {
             get
@@ -84,8 +85,6 @@ namespace EasyID.Data
                     {
                         _mac = _driver.Input;
                         _company = reader.ReadToEnd();
-                        System.Console.WriteLine(_company);
-
                         return _mac;
                     }
                 }
@@ -97,6 +96,8 @@ namespace EasyID.Data
                 }
             }
         }
+
+        // Checks whether or not the input is all hex characters
         public Dictionary<string, string> Hex
         {
             get

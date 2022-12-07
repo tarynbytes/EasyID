@@ -87,17 +87,21 @@
         d.Results += "<br>";
         FileInfo file = new FileInfo(f);
         string[]? dir = file.FullName.Split('\\').Reverse().Skip(1).Reverse().ToArray();
-        string? dirPath = string.Join("\\", dir);
-        Directory.SetCurrentDirectory(dirPath);
 
-        char[] delims = { '.', '!', '?', ',', '(', ')', '\t', '\n', '\r', ' ' }; //BUG: Need to fix such that spaces, periods, parentheses, etc. can be included in input somehow... 
+        string[] stringDelims = { ". ", "! ", "? ", ", " };
+        char[] charDelims = { '\r', '\t', '\n', ' '};
+
         var wordList = new List<string>();
         try
         {
 
-            string[] words = File.ReadAllText(file.Name)
-                .Split(delims, StringSplitOptions.RemoveEmptyEntries);
-            
+            string[] lines = File.ReadAllText(file.Name)
+                .Split(stringDelims, StringSplitOptions.RemoveEmptyEntries);
+
+            string joined = string.Join(" ", lines);
+
+            string[] words = joined.Split(charDelims, StringSplitOptions.RemoveEmptyEntries);
+
             foreach (string word in words)
             {
                 d.Input = word;
@@ -124,6 +128,8 @@
         SocialSecurityNumber ssn = new SocialSecurityNumber(d);
         BitcoinWalletAddress btc = new BitcoinWalletAddress(d);
         UnitedStatesZipCode zip = new UnitedStatesZipCode(d);
+        USPSTrackingNumber usps = new USPSTrackingNumber(d);
+        UPSTrackingNumber ups = new UPSTrackingNumber(d);
         CreditCardNumber ccn = new CreditCardNumber(d);
         EmailAddress email = new EmailAddress(d);
         YouTubeLink youtube = new YouTubeLink(d);
@@ -358,7 +364,38 @@
             d.Results += stateAbbreviation.Process();
             d.Results += "</b><br>";
         }
-
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(usps))
+        {
+            object value = descriptor.GetValue(usps);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += usps.ToString();
+            d.Results += "!<br>";
+            d.Results += usps.Process();
+            d.Results += "</b><br>";
+        }
+        b = true;
+        foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(ups))
+        {
+            object value = descriptor.GetValue(ups);
+            if (value == null) { b = false; }
+        }
+        if (b)
+        {
+            match = true;
+            d.Results += String.Format("<br><b>{0}:", d.Input);
+            d.Results += "<br>[ ! ] Data matched on: ";
+            d.Results += ups.ToString();
+            d.Results += "!<br>";
+            d.Results += ups.Process();
+            d.Results += "</b><br>";
+        }
 
         b = true;
         if (match == false)

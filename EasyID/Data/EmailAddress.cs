@@ -50,7 +50,7 @@ namespace EasyID
                 return null;
             }
         }
-        public int? AtSymbolCount
+        public int? AtSymbolCount   // Checks for one and only one '@' symbol in the input
         {
             get
             {

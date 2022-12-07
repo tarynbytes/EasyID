@@ -16,18 +16,20 @@ namespace EasyID.Data
         private string _numList = "";
         private string _symList = "";
         private string _indexList = "";
+
+        private string _noWhiteSpace = "";
+        private string _noWhiteSpaceContent = "";
+        private string _noWhiteSpaceLetterList = "";
+        private string _noWhiteSpaceNumList = "";
+        private string _noWhiteSpaceSymList = "";
+        private string _noWhiteSpaceIndexList = "";
+
         private Dictionary<string, string> _hex = new Dictionary<string, string> { };
         private int _atSymbolCount = 0;
         private int _youTubeCount = 0;
-        private string _abbreviation = "";
-        private string _zipCode = "";
         private string _btcStart = "";
-        private int[] _octets = new int[4];
-        private string _mac = "";
-        private int _ssnFirstThree = 0;
-        private string _uriHostNameType = "";
-        private string _urlDetails = "";
-        private string _tld = "";
+
+
 
         public void Reset()
         {
@@ -37,32 +39,41 @@ namespace EasyID.Data
             this.NumList = "";
             this.SymList = "";
             this.IndexList = "";
+
+            this.NoWhiteSpace = "";
+            this.NoWhiteSpaceContent = "";
+            this.NoWhiteSpaceLetterList = "";
+            this.NoWhiteSpaceIndexList = "";
+            this.NoWhiteSpaceNumList = "";
+            this.NoWhiteSpaceSymList = "";
+
             this.Hex = new Dictionary<string, string> { };
             this.AtSymbolCount = 0;
             this.YouTubeCount = 0;
-            this.Abbreviation = "";
-            this.ZipCode = "";
             this.BtcStart = "";
-            this.Octets = new int[4];
-            this.Mac = "";
-            this.SSNFirstThree = 0;
-            this.UriHostNameType = "";
-            this.URLDetails = "";
-            this.TopLevelDomain = "";
         }
 
 
         [Required]
         [StringLength(200, ErrorMessage = "Identifier too long (200 character limit).")]
-        public string? Input { get; set; }
+        public string? Input { get; set; }  // The exact user input of the search field
         [Required]
-        public string? Type { get; set; }
+        public string? Type { get; set; }   // Either "data string" or "file"
         public bool IsValidatedDesign { get; set; }
 
         public int Length // Returns the length of the input
         {
             get { return _length; }
             set { _length = value; }
+        }
+        public string NoWhiteSpace
+        {
+            get
+            {
+                _noWhiteSpace = Regex.Replace(this.Input, @"\s", "");
+                return _noWhiteSpace;
+            }
+            set { _noWhiteSpace = value; }
         }
         public string Content // Returns a string indicating the alphabetic/numeric/symbolic composition of the input
         {
@@ -80,6 +91,22 @@ namespace EasyID.Data
             }
             set { _content = value; }
         }
+        public string NoWhiteSpaceContent // Returns a string indicating the alphabetic/numeric/symbolic composition of the white space stripped input
+        {
+            get
+            {
+                if (this.NoWhiteSpaceLetterList.Length > 0 && this.NoWhiteSpaceNumList.Length == 0 && this.NoWhiteSpaceSymList.Length == 0) { _noWhiteSpaceContent = "alphabetic"; }       // aBcDeefGg
+                if (this.NoWhiteSpaceLetterList.Length == 0 && this.NoWhiteSpaceNumList.Length > 0 && this.NoWhiteSpaceSymList.Length == 0) { _noWhiteSpaceContent = "numeric"; }          // 180454365
+                if (this.NoWhiteSpaceLetterList.Length == 0 && this.NoWhiteSpaceNumList.Length == 0 && this.NoWhiteSpaceSymList.Length > 0) { _noWhiteSpaceContent = "symbolic"; }         // $#?- *^!!
+                if (this.NoWhiteSpaceLetterList.Length > 0 && this.NoWhiteSpaceNumList.Length > 0 && this.NoWhiteSpaceSymList.Length == 0) { _noWhiteSpaceContent = "alphanumeric"; }      // a1B2ff7Q8
+                if (this.NoWhiteSpaceLetterList.Length > 0 && this.NoWhiteSpaceNumList.Length == 0 && this.NoWhiteSpaceSymList.Length > 0) { _noWhiteSpaceContent = "alphasymbolic"; }     // a&b$c#@Dx
+                if (this.NoWhiteSpaceLetterList.Length == 0 && this.NoWhiteSpaceNumList.Length > 0 && this.NoWhiteSpaceSymList.Length > 0) { _noWhiteSpaceContent = "numersymbolic"; }     // 1&23$*4!#
+                if (this.NoWhiteSpaceLetterList.Length > 0 && this.NoWhiteSpaceNumList.Length > 0 && this.NoWhiteSpaceSymList.Length > 0) { _noWhiteSpaceContent = "alphanumersymbolic"; } // !1q@2w#3e
+
+                return _noWhiteSpaceContent;
+            }
+            set { _noWhiteSpaceContent = value; }
+        }
         public string LetterList // Returns a string of the letters within the input in the order they appear
         {
             get
@@ -96,6 +123,7 @@ namespace EasyID.Data
             }
             set { _letterList = value; }
         }
+
         public string NumList // Returns a string of the numbers within the input in the order they appear
         {
             get
@@ -135,7 +163,7 @@ namespace EasyID.Data
         }
 
 
-        public string IndexList // Returns the input int the form of LSNNSLSLN based on the letters, symbols, or numbers within the input
+        public string IndexList // Returns the input in the form of LSNNSLSLN based on the letters, symbols, or numbers within the input
         {
             get
             {
@@ -159,7 +187,89 @@ namespace EasyID.Data
             }
             set { _indexList = value; }
         }
-        public Dictionary<string, string> Hex // Returns a string of the symbols within the input in the order they appear
+
+        public string NoWhiteSpaceLetterList // Returns a string of the letters within the white space stripped input in the order they appear
+        {
+            get
+            {
+                _noWhiteSpaceLetterList = string.Empty;
+                foreach (char ch in this.NoWhiteSpace)
+                {
+                    if (char.IsLetter(ch))
+                    {
+                        _noWhiteSpaceLetterList += ch;
+                    }
+                }
+                return _noWhiteSpaceLetterList;
+            }
+            set { _noWhiteSpaceLetterList = value; }
+        }
+
+        public string NoWhiteSpaceNumList // Returns a string of the numbers within the white space stripped input in the order they appear
+        {
+            get
+            {
+                _noWhiteSpaceNumList = string.Empty;
+                foreach (char ch in this.NoWhiteSpace)
+                {
+                    if (char.IsDigit(ch))
+                    {
+                        _noWhiteSpaceNumList += ch;
+                    }
+                }
+                return _noWhiteSpaceNumList;
+            }
+            set { _noWhiteSpaceNumList = value; }
+        }
+
+        public string NoWhiteSpaceSymList // Returns a string of the symbols within the white space stripped input in the order they appear
+        {
+            get
+            {
+                _noWhiteSpaceSymList = string.Empty;
+                foreach (char ch in this.NoWhiteSpace)
+                {
+                    if (char.IsLetter(ch) || char.IsDigit(ch))
+                    {
+                        _noWhiteSpaceSymList += "";
+                    }
+                    else
+                    {
+                        _noWhiteSpaceSymList += ch;
+                    }
+                }
+                return _noWhiteSpaceSymList;
+            }
+            set { _noWhiteSpaceSymList = value; }
+        }
+
+
+        public string NoWhiteSpaceIndexList // Returns the input in the form of LSNNSLSLN based on the letters, symbols, or numbers within the white space stripped input
+        {
+            get
+            {
+                _noWhiteSpaceIndexList = string.Empty;
+                foreach (char ch in this.NoWhiteSpace)
+                {
+                    if (char.IsLetter(ch))
+                    {
+                        _noWhiteSpaceIndexList += "L";
+                    }
+                    else if (char.IsDigit(ch))
+                    {
+                        _noWhiteSpaceIndexList += "N";
+                    }
+                    else
+                    {
+                        _noWhiteSpaceIndexList += "S";
+                    }
+                }
+                return _noWhiteSpaceIndexList;
+            }
+            set { _noWhiteSpaceIndexList = value; }
+        }
+
+        public Dictionary<string, string> Hex // Returns a dictionary for each char of the input with the value of true or false whether or not the char is a hex character 
         {
             get
             {
@@ -209,40 +319,8 @@ namespace EasyID.Data
             set { _youTubeCount = value; }
         }
 
-        public string Results
-        {
-            get { return _results; }
-            set { _results = value; }
-        }
 
-        public string Abbreviation
-        {
-            get
-            {
-                _abbreviation = this.Input.Substring(0, 2);
-                return _abbreviation;
-            }
-            set { _abbreviation = value; }
-        }
-        public string ZipCode
-        {
-            get
-            {
-                _zipCode = this.Input.Substring(0, 5);
-                return _zipCode;
-            }
-            set { _zipCode = value; }
-        }
-        public string Mac
-        {
-            get
-            {
-                _mac = this.Input;
-                return _mac;
-            }
-            set { _mac = value; }
-        }
-        public string BtcStart
+        public string BtcStart  // Returns the starting substring of the input if it matches the start of a BTC wallet address
         {
             get
             {
@@ -274,55 +352,11 @@ namespace EasyID.Data
             }
             set { _btcStart = value; }
         }
-        public int[] Octets
-        {
-            get
-            {
-                try
-                {
-                    string[] splits = this.Input.Split('.');
-                    for (int i = 0; i < 4; i++)
-                    {
-                        _octets[i] = Int32.Parse(splits[i]);
-                    }
-                }
-                catch {; }
 
-                return _octets;
-            }
-            set { _octets = value; }
-        }
-        public int SSNFirstThree
+        public string Results       // Holds a string of the search output
         {
-            get
-            {
-                try
-                {
-                    return Int32.Parse(this.Input.Substring(0, 3));
-                }
-                catch
-                { return _ssnFirstThree; }
-            }
-            set { _ssnFirstThree = value; }
-        }
-        public string UriHostNameType
-        {
-            get
-            {
-                _uriHostNameType = Uri.CheckHostName(this.Input).ToString();
-                return _uriHostNameType;
-            }
-            set { _uriHostNameType = value; }
-        }
-        public string URLDetails
-        {
-            get { return _urlDetails; }
-            set { _urlDetails = value; }
-        }
-        public string TopLevelDomain
-        {
-            get { return _tld; }
-            set { _tld = value; }
+            get { return _results; }
+            set { _results = value; }
         }
     }
 }

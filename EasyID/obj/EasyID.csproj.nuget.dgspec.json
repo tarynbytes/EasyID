@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\EasyID.csproj": {}
+    "C:\\Users\\tchov\\source\\EasyID\\EasyID\\EasyID.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\EasyID.csproj": {
+    "C:\\Users\\tchov\\source\\EasyID\\EasyID\\EasyID.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\EasyID.csproj",
+        "projectUniqueName": "C:\\Users\\tchov\\source\\EasyID\\EasyID\\EasyID.csproj",
         "projectName": "EasyID",
-        "projectPath": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\EasyID.csproj",
+        "projectPath": "C:\\Users\\tchov\\source\\EasyID\\EasyID\\EasyID.csproj",
         "packagesPath": "C:\\Users\\tchov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\obj\\",
+        "outputPath": "C:\\Users\\tchov\\source\\EasyID\\EasyID\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -12,9 +12,10 @@ namespace EasyID
         private List<string> _contentList = new List<string> { "alphabetic", "alphasymbolic" };
         private List<string> _symList = new List<string> { "", "." };
         private string _numList = "";
-        private Dictionary<string, string> _abbreviations = new Dictionary<string, string>
+        private Dictionary<string, string> _abbreviations = new Dictionary<string, string>  // Hard-coded abbreviations for all 50 states
             {
                 ["AL"] = "Alabama",
+                ["AK"] = "Alaska",
                 ["AR"] = "Arkansas",
                 ["CA"] = "California",
                 ["CO"] = "Colorado",
@@ -71,16 +72,16 @@ namespace EasyID
             _driver = d;
         }
 
-
+        // Returns the abbreviation if the input matches any of the key abbreviations in the abbreviations dictionary
         public string Abbreviation
         {
             get
             {
                 try
                 {
-                    bool keyExists = _abbreviations.ContainsKey(_driver.Abbreviation);
+                    bool keyExists = _abbreviations.ContainsKey(_driver.Input.Substring(0, 2));
                     if (keyExists)
-                        return _driver.Abbreviation;
+                        return _driver.Input.Substring(0, 2);
                     else
                     {
                         return null;
@@ -92,7 +93,6 @@ namespace EasyID
                 }
             }
         }
-
 
         public int? Length
         {

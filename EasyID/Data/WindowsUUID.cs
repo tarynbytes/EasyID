@@ -6,7 +6,7 @@ namespace EasyID.Data
     {
         private Driver _driver;
         private List<int> _lengthList = new List<int> { 32, 36 }; //https://stackoverflow.com/questions/13397038/uuid-max-character-length
-        private static string _content = "alphanumersymbolic"; // TODO is this correct? 
+        private static string _content = "alphanumersymbolic";
         private List<string> _symList = new List<string> { "-" };
 
         public WindowsUUID(Driver d) : base(d)
