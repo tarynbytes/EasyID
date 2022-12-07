@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using static System.Net.WebRequestMethods;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace EasyID.Data
 {
@@ -15,9 +16,9 @@ namespace EasyID.Data
         private List<string> _contentList = new List<string> { "alphasymbolic", "alphanumersymbolic" };
         private string _uriHostNameType = "";
         private string _urlDetails = "";
-        private string _proto = "";
-        private string _url = "";
-        private string _tld = "";
+        private string _proto = ""; // http
+        private string _url = "";   // google.com
+        private string _tld = "";   // .com
 
         public URL(Driver d) : base(d)
         {
@@ -25,6 +26,7 @@ namespace EasyID.Data
             ParseUrl();
         }
 
+        // Removes the 'www' subdomain if provided, and separates the protocol from the URL
         private void ParseUrl()
         {
             string[] proto = _driver.Input.Split("//");
@@ -92,15 +94,70 @@ namespace EasyID.Data
             }
         }
 
+        // Extracts the top-level domain from the URL (i.e: ".edu")
+        public string? TopLevelDomain
+        {
+            get
+            {
+                try
+                {
+                    string f = "tlds.txt";
+                    FileInfo file = new FileInfo(f);
+                    string[]? dir = file.FullName.Split('\\').Reverse().Skip(1).Reverse().ToArray();
 
+                    var matches = new Dictionary<int, List<string>> { };
+
+                    string[] lines = System.IO.File.ReadAllLines(file.Name);
+                    string joined = string.Join("!.", lines);
+                    string[] tlds = joined.Split("!");
+                    string upper = _driver.Input.ToUpper();
+                    foreach (string tld in tlds)
+                    {
+                        if (upper.Contains(tld))
+                        {
+                            int i = upper.IndexOf(tld);
+                            if (matches.ContainsKey(i))
+                            {
+                                matches[i].Add(tld);
+
+                            }
+                            else
+                            {
+                                List<string> values = new List<string>();
+                                values.Add(tld);
+                                matches.Add(i, values);
+                            }
+                        }
+                    }
+                    var matchList = matches[matches.Keys.Max()].OrderByDescending(x => x.Length).ToList();
+                    _tld = matchList.First();
+
+                }
+                catch {;}
+
+                if (_tld != "")
+                {
+                    return _tld;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        // Returns null if the stripped domain URL is not a reachable site
         public string? UriHostNameType
         {
             get
             {
-                UriHostNameType type = Uri.CheckHostName(this._url);
+                string[] strip = this._url.ToUpper().Split(_tld);
+                string urlOnly = strip[0] + _tld;
+
+                UriHostNameType type = Uri.CheckHostName(urlOnly);
                 if (type == System.UriHostNameType.Unknown)
                 {
-                    this._uriHostNameType = "Unknown";
+                    return null;
                 }
                 else if (type == System.UriHostNameType.Basic)
                 {
@@ -114,9 +171,12 @@ namespace EasyID.Data
                 {
                     return null;
                 }
+
                 return _uriHostNameType;
             }
         }
+
+        // Attempts to retrieve renderable response from a webpage
         public string URLDetails
         {
             get
@@ -146,37 +206,7 @@ namespace EasyID.Data
                 return _urlDetails;
             }
         }
-        public string? TopLevelDomain
-        {
-            get
-            {
-                try
-                {
 
-                    string[] lines = System.IO.File.ReadAllLines("C:\\Users\\tchov\\source\\EasyID\\EasyID\\tlds-alpha-by-domain.txt");
-                    string joined = string.Join("!.", lines);
-                    string[] tlds = joined.Split("!");
-                    string upper = _driver.Input.ToUpper();
-                    foreach (string tld in tlds)
-                    {
-                        if (upper.Contains(tld))
-                        {
-                            _tld = tld;
-                        }
-                    }
-                }
-                catch {;}
-
-                if (_tld != "")
-                {
-                    return _tld;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
         public override string Process()
         {
             string returnString = "";

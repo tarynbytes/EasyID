@@ -34,7 +34,8 @@ namespace EasyID.Data
             }
         }
 
-        public Dictionary<string, string> Hex
+        // Checks whether or not the input is all hex characters
+        public Dictionary<string, string> Hex   
         {
             get
             {

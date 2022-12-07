@@ -13,12 +13,12 @@ namespace EasyID
         private Driver _driver;
 
         private List<int> _lengthList = new List<int> { 9, 11 };
-        private List<string> _indexList = new List<string> { "NNNNNNNNN", "NNNSNNSNNNN" };  //TODO :  Change eventually to deliniate just which chars S/L/N are allowed at which index. (i.e symbols only allowed at indices 4,7)
+        private List<string> _indexList = new List<string> { "NNNNNNNNN", "NNNSNNSNNNN" };
         private List<string> _contentList = new List<string> { "numeric", "numersymbolic" };
         private List<string> _symList = new List<string> { "  ", "--", ""};
         private string _letterList = "";
         private string _ssnState = "";
-        private List<(int, int, string)> _states = new List<(int, int, string)>
+        private List<(int, int, string)> _states = new List<(int, int, string)>  // Hard-coded SSN geographical locations based on first three digits, allocated prior to June 25, 2011
         {
             (001, 003, "New Hampshire"),
             (004, 007, "Maine"),
@@ -159,6 +159,7 @@ namespace EasyID
             }
         }
 
+        // Checks that the first three digits of the input exists in the list of potential states
         public int? SSNFirstThree
         {
             get
@@ -195,24 +196,10 @@ namespace EasyID
         {
             string returnString = "";
 
-            if (!Valid(_driver.Input)) { returnString += "This seems to be an invalid Social Security Number...<br>"; }
-
             returnString += String.Format("This SSN was likely issued from the state of {0}.<br>" +
                 "However, SSNs issued after June 25, 2011 implement randomization and won't follow this schematic.", this._ssnState);
 
             return returnString;
-        }
-
-
-        private static bool Valid(string number)
-        {
-            // SSN Regex
-            // consists of 9 digits and usually divided by 3 parts by hyphen(XXX - XX - XXXX).
-            // The first part can not be 000, 666, or between 900 - 900.
-            // Second part can not be 00. Third part can not be 0000
-
-            Regex validateSSNRegex = new Regex("^(?!666|000|9\\d{2})\\d{3}-?(?!00)\\d{2}-?(?!0{4})\\d{4}$");
-            return validateSSNRegex.IsMatch(number);
         }
 
         public override string ToString()
