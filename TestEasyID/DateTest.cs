@@ -1,8 +1,6 @@
 ﻿using EasyID;
 using EasyID.Data;
 
-
-
 namespace TestEasyID
 {
     public class DateTest : IDisposable
