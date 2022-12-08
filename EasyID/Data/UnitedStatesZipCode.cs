@@ -23,6 +23,7 @@ namespace EasyID.Data
             _driver = d;
         }
 
+        // API call to see if the input exists in a database of zip codes. Extracts the county, state, and timezone.
         public string ZipCode
         {
             get

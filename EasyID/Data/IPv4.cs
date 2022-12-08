@@ -4,6 +4,7 @@ namespace EasyID.Data
 {
     public class IPv4 : DataTemplate
     {
+        // TODO: Decimal notation, hex notiation
         private Driver _driver;
         private List<int> _lengthList = new List<int>();
         private static string _content = "numersymbolic";
@@ -11,13 +12,13 @@ namespace EasyID.Data
         private string _letterList = "";
         private int[] _octets = new int[4];
 
-        //TODO: Decimal notation, hex notiation
 
         public IPv4(Driver d) : base(d)
         {
             _driver = d;
         }
 
+        // Splits the input into four octets and checks that each are bound between 0 and 255
         public int[] Octets
         {
             get
@@ -122,7 +123,11 @@ namespace EasyID.Data
             }
 
             return returnString;
+
         }
+
+
+        // Returns whether or not the IP address is private or public
         private string PrivateIP(int[] octets)
         {
             if ((octets[0] == 10) || (octets[0] == 192 && octets[1] == 168) || (octets[0] == 172 && (octets[1] >= 16 && octets[1] <= 31)))
@@ -133,6 +138,7 @@ namespace EasyID.Data
                 return "";
         }
 
+        // Returns the hiearchical class of the IP address
         private string IPClass(int[] octets)
         {
 

@@ -19,6 +19,8 @@ namespace EasyID.Data
         private string _phoneInputIndexList = "";
         private string _phoneInputSymList = "";
 
+        // Caller ID Table Used: https://www.bennetyee.org/ucsd-pages/area.state.html
+
 
         public UnitedStatesPhoneNumber(Driver d) : base(d)
         {
@@ -27,11 +29,11 @@ namespace EasyID.Data
             GetPhoneInputIndexList();
             GetPhoneInputSymList();
             GetAreaCode();
-            GetCallerID();
         }
 
 
-
+        // change format of the input to remove the country code and any white space
+        // use this new format throughout the class to make our comparisons
         private void ParseDriver()
         {
             if (_driver.Input.StartsWith("1+"))
@@ -47,9 +49,9 @@ namespace EasyID.Data
                 _phoneInput = _driver.Input;
             }
             _phoneInput = Regex.Replace(_phoneInput, @"\s", "");
-            System.Console.WriteLine(_phoneInput);
         }
 
+        // Returns first three digits of the input
         private void GetAreaCode()
         {
             string numsOnly = "";
@@ -69,36 +71,45 @@ namespace EasyID.Data
                 _areaCode = "";
             }
         }
-
-        private void GetCallerID()
+        
+        // Reads from online HTML table of area codes and pulls out the matching geographical location
+        // Returns null if no caller ID match.
+        public string CallerID
         {
-            WebClient client = new WebClient();
-            string page = client.DownloadString("https://www.bennetyee.org/ucsd-pages/area.state.html");
-            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml(page);
-
-            var query = from table in doc.DocumentNode.SelectNodes("//table").Cast<HtmlNode>()
-                        from row in table.SelectNodes("tr").Cast<HtmlNode>()
-                        from cell in row.SelectNodes("th|td").Cast<HtmlNode>()
-                        select new { Table = table.Id, CellText = cell.InnerText };
-
-            int idx = 0;
-            foreach (var cell in query)
+            get
             {
-                if (cell.CellText == _areaCode)
+                WebClient client = new WebClient();
+                string page = client.DownloadString("https://www.bennetyee.org/ucsd-pages/area.state.html");
+                HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                doc.LoadHtml(page);
+
+                var query = from table in doc.DocumentNode.SelectNodes("//table").Cast<HtmlNode>()
+                            from row in table.SelectNodes("tr").Cast<HtmlNode>()
+                            from cell in row.SelectNodes("th|td").Cast<HtmlNode>()
+                            select new { Table = table.Id, CellText = cell.InnerText };
+
+                int idx = 0;
+                foreach (var cell in query)
                 {
-                    _areaCodeCallerID = query.ElementAt(idx +3).CellText;
+                    if (cell.CellText == _areaCode)
+                    {
+                        _areaCodeCallerID = query.ElementAt(idx + 3).CellText;
+                    }
+                    idx++;
                 }
-                idx++;
+
+                if (_areaCodeCallerID == "")
+                {
+                    _areaCodeCallerID = null;
+                }
+                return _areaCodeCallerID;
             }
 
-            if (_areaCodeCallerID == "")
-            {
-                _areaCodeCallerID = "Cannot determine.";
-            }
+            
         }
 
-        private void GetPhoneInputIndexList()// Sets the _phoneInputIndexList int the form of LSNNSLSLN based on the letters, symbols, or numbers within the input
+        // Sets the _phoneInputIndexList int the form of LSNNSLSLN based on the letters, symbols, or numbers within the input
+        private void GetPhoneInputIndexList()
         {
             foreach (char ch in _phoneInput)
             {
@@ -117,7 +128,9 @@ namespace EasyID.Data
             }
 
         }
-        private void GetPhoneInputSymList()// Sets _phoneInputSymList int the form of LSNNSLSLN based on the letters, symbols, or numbers within the input
+
+        // Sets _phoneInputSymList int the form of LSNNSLSLN based on the letters, symbols, or numbers within the input
+        private void GetPhoneInputSymList()
         {
 
                 foreach (char ch in _phoneInput)
@@ -133,11 +146,12 @@ namespace EasyID.Data
                 }
 
         }
+
         public int? Length
         {
             get
             {
-                for (int i = 7; i <= 17; i++) // Shortest: 3334444 | Longest: 1+ (222) 333-4444
+                for (int i = 7; i <= 17; i++) // Shortest format: 3334444 | Longest format: 1+ (222) 333-4444
                 {
                     _lengthList.Add(i);
                 }

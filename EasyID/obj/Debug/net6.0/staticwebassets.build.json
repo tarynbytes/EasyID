@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xqYnXqYKgNdJCgEm5hDTOi+pdfyIdXoC9TvSwJkl4p0=",
+  "Hash": "/6NduMZOxphBB3Vo0h6O3h69nM4zVkdFi7iy48mRuGA=",
   "Source": "EasyID",
   "BasePath": "_content/EasyID",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "EasyID\\wwwroot",
       "Source": "EasyID",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\bundle\\EasyID.styles.css",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\bundle\\EasyID.styles.css",
       "SourceId": "EasyID",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "EasyID.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\bundle\\EasyID.styles.css"
+      "OriginalItemSpec": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\bundle\\EasyID.styles.css"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\EasyID.bundle.scp.css",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\EasyID.bundle.scp.css",
       "SourceId": "EasyID",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "EasyID.bundle.scp.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\EasyID.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\EasyID.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\css\\site.css",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\favicon.ico",
       "SourceId": "EasyID",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\tchov\\source\\repos\\EasyID\\EasyID\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\wwwroot\\",
       "BasePath": "_content/EasyID",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
