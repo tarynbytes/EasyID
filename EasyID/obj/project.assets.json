@@ -4875,11 +4875,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\EasyID.csproj",
       "projectName": "EasyID",
       "projectPath": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\EasyID.csproj",
       "packagesPath": "C:\\Users\\tchov\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\tchov\\source\\EasyID\\EasyID\\EasyID.csproj",
+      "projectName": "EasyID",
+      "projectPath": "C:\\Users\\tchov\\source\\EasyID\\EasyID\\EasyID.csproj",
+      "packagesPath": "C:\\Users\\tchov\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tchov\\source\\EasyID\\EasyID\\obj\\",
+>>>>>>> b16b2b9980311812072beb1134763a8aad21f7e4
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

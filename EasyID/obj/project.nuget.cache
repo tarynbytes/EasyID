@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "YrgKMGNtl0YgzQsoAa8nqiCesSB541jSM5SiB/svh3tHcC1u9cPE243gCvS14PwRU6B//R+9fagF88rC9rZF0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\tchov\\source\\EasyID-main\\EasyID-main\\EasyID\\EasyID.csproj",
+=======
+  "dgSpecHash": "CsH2g/YdEo4XUYEBjg5lYFtpMQ36nA0i3/v02oOiU8UkNEAa4yLE2pDoPz8jtHVbhJ3pSJw9P2RzXNyNuf7IoA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tchov\\source\\EasyID\\EasyID\\EasyID.csproj",
+>>>>>>> b16b2b9980311812072beb1134763a8aad21f7e4
   "expectedPackageFiles": [
     "C:\\Users\\tchov\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",
     "C:\\Users\\tchov\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
